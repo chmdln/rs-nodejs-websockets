@@ -1,3 +1,5 @@
+.env
+
 # dependencies
 /node_modules
 
@@ -11,6 +13,7 @@ Thumbs.db
 .idea/
 *.PEM
 .vscode/
+*.log
 
 # Logs
 npm-debug.log
