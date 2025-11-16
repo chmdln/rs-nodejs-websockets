@@ -1,5 +1,7 @@
+.env
+
 # dependencies
-/node_modules
+node_modules/
 
 # System Files
 .DS_Store
@@ -11,6 +13,7 @@ Thumbs.db
 .idea/
 *.PEM
 .vscode/
+*.log
 
 # Logs
 npm-debug.log
