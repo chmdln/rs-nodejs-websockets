@@ -1,15 +1,13 @@
 export class DB {
   constructor() {
-    this.players = new Map(); // key: index, value: player object
-    this.credentials = new Map(); // key: name, value: { password, index }
-    this.winners = []; // array of { name, wins }
+    this.players = new Map(); 
+    this.credentials = new Map();
+    this.winners = []; 
     this.playerIndex = 1;
   }
 
-  // Player registration and login
   registerPlayer(name, password, clientId) {
     if (this.credentials.has(name)) {
-      // Player exists - try to login
       const storedCredentials = this.credentials.get(name);
       if (storedCredentials.password === password) {
         // Login successful
@@ -43,6 +41,15 @@ export class DB {
     return this.players.get(index);
   }
 
+  getPlayerById(userId) {
+    for (const player of this.players.values()) {
+      if (player.clientId === userId) {
+        return player;
+      }
+    }
+    return null;
+  }
+
   getPlayerByName(name) {
     const credentials = this.credentials.get(name);
     if (credentials) {
@@ -69,19 +76,14 @@ export class DB {
       this.winners.push({ name: playerName, wins: 1 });
     }
     
-    // Update player's wins count
     const player = this.getPlayerByName(playerName);
     if (player) {
       player.wins++;
     }
-    
-    // Sort winners by wins count (descending)
-    this.winners.sort((a, b) => b.wins - a.wins);
   }
 
   getWinners() {
-    return this.winners.slice(0, 10); // Top 10 winners
+    return this.winners
   }
 }
 
-// module.exports = InMemoryDB;
